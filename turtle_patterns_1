@@ -1,0 +1,69 @@
+'''
+The program draws three shapes using turtle. The parameters
+for each shape can be changed in each function call
+'''
+
+import turtle
+
+def main():
+    draw()
+
+def draw():
+    '''
+    Calls the functions to draw a doodle.
+    '''
+    #turtle.speed(1)
+    turtle.shape('turtle')
+    
+    draw_spiral("orange", 600, 0)
+    draw_pyramid("green", 13, 10)
+    draw_polygon('red', 7, 14, 20)
+
+def draw_spiral(color, size, tilt):
+    turtle.penup()
+    turtle.setposition(-180, 180)
+    turtle.pendown()
+    turtle.rt(tilt)
+    turtle.color(color)
+    turtle.pensize(5)
+    for steps in range(size):
+        turtle.forward(steps * .005)
+        turtle.rt(3)
+
+def draw_pyramid(color, rows, tilt):
+    turtle.penup()
+    turtle.setposition(-180, -60)
+    turtle.color(color)
+    turtle.rt(tilt)
+    turtle.pendown()
+    for steps in range(rows):
+        turtle.forward(steps * 15)
+        if steps % 2 == 0:
+            turtle.rt(45)
+        else:
+            turtle.lt(45)
+        turtle.forward(10)
+        if steps % 2 == 0:
+            turtle.rt(135)
+        else:
+            turtle.lt(135)
+    turtle.forward(15*rows)
+    
+def draw_polygon(color, sides, loops, tilt):
+    turtle.penup()
+    turtle.setposition(100, 50)
+    turtle.pendown()
+    turtle.color(color)
+    turtle.pensize(2)
+    turtle.lt(tilt)
+    for length in range(sides * loops):
+        turtle.forward(length * .5)
+        turtle.up()
+        turtle.forward(length * .25)
+        turtle.down()
+        turtle.forward(length * .5)
+        turtle.right(360 / sides)
+    
+if __name__ == "__main__":
+    main()
+    
